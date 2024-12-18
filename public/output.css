@@ -594,6 +594,10 @@ video {
   height: 100%;
 }
 
+.h-\[400px\] {
+  height: 400px;
+}
+
 .w-screen {
   width: 100vw;
 }
@@ -914,6 +918,14 @@ video {
   }
 
   .md\:w-2\/4 {
+    width: 50%;
+  }
+
+  .md\:w-7\/12 {
+    width: 58.333333%;
+  }
+
+  .md\:w-6\/12 {
     width: 50%;
   }
 
