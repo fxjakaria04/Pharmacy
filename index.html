@@ -11,18 +11,17 @@
     <main>
         <div class="h-screen w-screen flex items-center justify-center" style="background: url(public/images/bg.jpg); background-size: cover;">
             <div class="w-10/12 md:w-8/12 border rounded-lg overflow-hidden flex">
-                <form action="" class="md:w-2/4 w-full p-4 text-center flex flex-col items-center gap-4 bg-[#ffffffbb] backdrop:blur-lg shadow-md">
+                <form action="" class="md:w-2/4 w-full p-4 text-center flex flex-col items-center gap-4 bg-slate-200 backdrop:blur-lg shadow-md">
                     <h1 class="font-bold text-xl uppercase">LOGIN</h1>
                     <p class="text-xs text-slate-600">Welcome to MMIT Pharmecy management Software.</p>
                     <div class="bg-slate-100 flex items-center py-2 px-1 rounded-md shadow border border-slate-100 w-full">
                         <i class="fa-regular fa-user text-sm"></i>
                         <input type="text" name="" id="" placeholder="Username" class="bg-transparent text-gray-600 text-xs outline-none px-2 w-full">
                     </div>
-                    <div x-data="{passShow: false}" class="bg-slate-100 flex items-center py-2 px-1 rounded-md shadow border border-slate-100 w-full">
+                    <div x-data="{passShow: true}" class="bg-slate-100 flex items-center py-2 px-1 rounded-md shadow border border-slate-100 w-full">
                         <i class="fa-solid fa-key text-sm"></i>
-                        <input type="text" name="" id="" placeholder="Password" class="bg-transparent text-gray-600 text-xs outline-none px-2 w-full">
-                        <i class="fa-regular fa-eye-slash text-xs text-gray-400"></i>
-                        <!-- <i class="fa-regular fa-eye text-xs text-gray-400"></i> -->
+                        <input :type="passShow ? 'text' : 'password'" type="text" name="" id="" placeholder="Password" class="bg-transparent text-gray-600 text-xs outline-none px-2 w-full">
+                        <i @click="passShow = !passShow" :class="passShow ? 'fa-regular fa-eye-slash text-xs' : 'fa-regular fa-eye'" class="text-xs text-gray-400"></i>
                     </div>
                     <div class="w-full flex items-center justify-between text-xs">
                         <div class="self-start flex gap-1 items-center">
