@@ -60,21 +60,53 @@
                         </select>
                     </div>
                 </div>
-                <table class="border whitespace-nowrap overflow-auto">
-                    <thead>
-                        <tr class="bg-violet-500">
-                            <th class="min-w-52">Sr</th>
-                            <th>Medicine</th>
-                            <th>Rack</th>
-                            <th>Expiry Date</th>
-                            <th>Qty</th>
-                            <th>Sale Price</th>
-                            <th>Bonus</th>
-                            <th>Available</th>
-                            <th>Amount</th>
-                        </tr>
-                    </thead>
-                </table>
+                <div class="w-full py-2 overflow-auto">
+                    <table class="border whitespace-nowrap min-w-full">
+                        <thead>
+                            <tr class="bg-violet-600 text-white">
+                                <th class="px-4 border-r">Sr</th>
+                                <th class="px-4 border-r">Medicine</th>
+                                <th class="px-4 border-r">Rack</th>
+                                <th class="px-4 border-r">Expiry Date</th>
+                                <th class="px-4 border-r">Qty</th>
+                                <th class="px-4 border-r">Sale Price</th>
+                                <th class="px-4 border-r">Bonus</th>
+                                <th class="px-4 border-r">Available</th>
+                                <th class="px-4 border-r">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center font-medium py-1">1</td>
+                                <td class="text-center font-medium py-1">1</td>
+                                <td class="text-center font-medium py-1">1</td>
+                                <td class="text-center font-medium py-1">1</td>
+                                <td class="text-center font-medium py-1">1</td>
+                                <td class="text-center font-medium py-1">1</td>
+                                <td class="text-center font-medium py-1">1</td>
+                                <td class="text-center font-medium py-1">1</td>
+                                <td class="text-center font-medium py-1">1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="w-full p-1 grid grid-cols-1 md:grid-cols-3">
+                    <div class="col-span-1 md:col-span-2"></div>
+                    <div class="col-span-1 border">
+                        <div class="w-full flex items-center justify-between border-b p-2">
+                            <span class="border-r w-4/12 font-semibold">Subtotal</span>
+                            <span class="font-semibold">0</span>
+                        </div>
+                        <div class="w-full flex items-center justify-between border-b p-2">
+                            <span class="border-r w-4/12 font-semibold">Discount %</span>
+                            <input type="number" name="" id="" placeholder="Enter Percentage" class="w-7/12 outline-none">
+                        </div>
+                        <div class="w-full flex items-center justify-between border-b p-2">
+                            <span class="border-r w-4/12 font-semibold">Discount</span>
+                            <input type="number" name="" id="" placeholder="Discount Amount" class="w-7/12 outline-none">
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
 </body>
