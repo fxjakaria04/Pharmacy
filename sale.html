@@ -56,34 +56,129 @@
                     </div>
                 </div>
                 <div class="w-full py-2 overflow-auto">
-                    <table class="border whitespace-nowrap min-w-full">
+                    <table class="border whitespace-nowrap min-w-full" id="medicine-table">
                         <thead>
-                            <tr class="bg-violet-600 text-white">
-                                <th class="px-4 border-r">Sr</th>
-                                <th class="px-4 border-r">Medicine</th>
-                                <th class="px-4 border-r">Rack</th>
-                                <th class="px-4 border-r">Expiry Date</th>
-                                <th class="px-4 border-r">Qty</th>
-                                <th class="px-4 border-r">Sale Price</th>
-                                <th class="px-4 border-r">Bonus</th>
-                                <th class="px-4 border-r">Available</th>
-                                <th class="px-4 border-r">Amount</th>
-                            </tr>
+                          <tr class="bg-violet-600 text-white">
+                            <th class="px-4 border-r">Sr</th>
+                            <th class="px-4 border-r">Medicine</th>
+                            <th class="px-4 border-r">Rack</th>
+                            <th class="px-4 border-r">Expiry Date</th>
+                            <th class="px-4 border-r">Qty</th>
+                            <th class="px-4 border-r">Sale Price</th>
+                            <th class="px-4 border-r">Bonus</th>
+                            <th class="px-4 border-r">Available</th>
+                            <th class="px-4 border-r">Amount</th>
+                            <th class="px-4 border-r"></th>
+                          </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-center font-medium py-1">1</td>
-                                <td class="text-center font-medium py-1">1</td>
-                                <td class="text-center font-medium py-1">1</td>
-                                <td class="text-center font-medium py-1">1</td>
-                                <td class="text-center font-medium py-1">1</td>
-                                <td class="text-center font-medium py-1">1</td>
-                                <td class="text-center font-medium py-1">1</td>
-                                <td class="text-center font-medium py-1">1</td>
-                                <td class="text-center font-medium py-1">1</td>
-                            </tr>
+                          <tr id="hidden-row" class="hidden">
+                            <td class="text-center py-1 border border-l-none">1</td>
+                            <td class="text-center py-1 border border-l-none">Uremed</td>
+                            <td class="text-center py-1 border border-l-none">Rack 5</td>
+                            <td class="text-center py-1 border border-l-none">21/08/2025</td>
+                            <td class="text-start py-1 w-20 border border-l-none">
+                              <input type="number" class="w-full bg-transparent border border-gray-700 p-1">
+                            </td>
+                            <td class="text-center py-1 border border-l-none w-20">
+                              <input type="number" class="w-full bg-transparent border border-gray-700 p-1">
+                            </td>
+                            <td class="text-center border border-l-none py-1 w-20">
+                              <input type="number" class="w-full bg-transparent border border-gray-700 p-1">
+                            </td>
+                            <td class="text-center py-1 border border-l-none">64</td>
+                            <td class="text-center py-1 border border-l-none">1</td>
+                            <td class="text-center py-1 border border-l-none">
+                              <button class="text-red-600 delete-row">
+                                <i class="fa-solid fa-trash"></i>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td class="p-1">
+                              <select id="medicine-select" class="w-full bg-transparent border border-gray-700">
+                                <option value="">- Select -</option>
+                                <option value="Medicine -1">Medicine -1</option>
+                                <option value="Medicine -2">Medicine -2</option>
+                                <option value="Medicine -3">Medicine -3</option>
+                                <option value="Medicine -4">Medicine -4</option>
+                              </select>
+                            </td>
+                          </tr>
                         </tbody>
-                    </table>
+                      </table>
+                      
+                      <script>
+                        // Medicine data
+                        const medicinesData = {
+                          "Medicine -1": { name: "Uremed", rack: "Rack 5", expiry: "21/08/2025", available: 64, amount: 1 },
+                          "Medicine -2": { name: "Paracetamol", rack: "Rack 3", expiry: "12/12/2024", available: 120, amount: 2 },
+                          "Medicine -3": { name: "Ibuprofen", rack: "Rack 7", expiry: "15/06/2025", available: 85, amount: 3 },
+                          "Medicine -4": { name: "Amoxicillin", rack: "Rack 1", expiry: "22/03/2026", available: 50, amount: 4 },
+                        };
+                      
+                        // Add event listener for the dropdown
+                        document.getElementById("medicine-select").addEventListener("change", function () {
+                          const selectedMedicine = this.value;
+                          if (selectedMedicine && medicinesData[selectedMedicine]) {
+                            if (!isMedicineAlreadyAdded(selectedMedicine)) {
+                              addRow(medicinesData[selectedMedicine], selectedMedicine);
+                            }
+                          }
+                          this.value = ""; // Reset dropdown
+                        });
+                      
+                        // Function to check if a medicine is already added
+                        function isMedicineAlreadyAdded(medicineName) {
+                          const rows = document.querySelectorAll("#medicine-table tbody tr");
+                          for (let row of rows) {
+                            const medicineCell = row.querySelector("td:nth-child(2)");
+                            if (medicineCell && medicineCell.textContent === medicineName) {
+                              return true; // Medicine already exists
+                            }
+                          }
+                          return false;
+                        }
+                      
+                        // Function to add a new row
+                        function addRow(medicine, medicineName) {
+                          const table = document.getElementById("medicine-table").querySelector("tbody");
+                          const newRow = document.createElement("tr");
+                      
+                          newRow.innerHTML = `
+                            <td class="text-center py-1 border border-l-none">${table.querySelectorAll("tr").length - 1}</td>
+                            <td class="text-center py-1 border border-l-none">${medicineName}</td>
+                            <td class="text-center py-1 border border-l-none">${medicine.rack}</td>
+                            <td class="text-center py-1 border border-l-none">${medicine.expiry}</td>
+                            <td class="text-start py-1 w-20 border border-l-none">
+                              <input type="number" class="w-full bg-transparent border border-gray-700 p-1">
+                            </td>
+                            <td class="text-center py-1 border border-l-none w-20">
+                              <input type="number" class="w-full bg-transparent border border-gray-700 p-1">
+                            </td>
+                            <td class="text-center border border-l-none py-1 w-20">
+                              <input type="number" class="w-full bg-transparent border border-gray-700 p-1">
+                            </td>
+                            <td class="text-center py-1 border border-l-none">${medicine.available}</td>
+                            <td class="text-center py-1 border border-l-none">${medicine.amount}</td>
+                            <td class="text-center py-1 border border-l-none">
+                              <button class="text-red-600 delete-row">
+                                <i class="fa-solid fa-trash"></i>
+                              </button>
+                            </td>
+                          `;
+                      
+                          table.insertBefore(newRow, table.lastElementChild);
+                      
+                          // Add delete functionality
+                          newRow.querySelector(".delete-row").addEventListener("click", function () {
+                            newRow.remove();
+                          });
+                        }
+                      </script>
+                      
+                      
                 </div>
                 <div class="w-full p-1 grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div class="col-span-1 md:col-span-2 flex flex-col gap-2">
